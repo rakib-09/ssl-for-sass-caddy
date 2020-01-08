@@ -1,0 +1,14 @@
+[Unit]
+Description=Caddy HTTP/2 web server
+
+[Service]
+User=caddy
+Group=caddy
+Environment=CADDYPATH=/etc/caddy
+ExecStart=/usr/local/bin/caddy -agree=true -log=/var/log/caddy/caddy.log -conf=/etc/caddy/Caddyfile -root=/dev/null
+ExecReload=/bin/kill -USR1 $MAINPID
+LimitNOFILE=1048576
+LimitNPROC=64
+
+[Install]
+WantedBy=multi-user.target
